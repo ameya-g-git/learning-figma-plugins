@@ -1,7 +1,9 @@
 <!-- CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/thomas-lowry/figma-plugin-ds/dist/figma-plugin-ds.css">
+
 <style>
-  input {
-    display: block;
+  input, textarea {
+    display: block
   }
 </style>
 
@@ -9,12 +11,24 @@
 <h1>Social Media Post Generator</h1>
 
 <div id="form">
-  <label for="username">Username</label>
-  <input type="text">
+  <div class="input">
+    <label class="label" for="username">Username</label>
+    <input type="input" id="username" class="input__field" value="Luna">
+  </div>
 
-  <label for="name">Name</label>
-  <input type="text">
+  <div class="input">
+    <label class="label" for="name">Name</label>
+    <input type="input" id="name" class="input__field" value="Luna">
+  </div>
+  
+  <div class="input">
+    <label class="label" for="description">Description</label>
+    <textarea class="textarea" rows="2">Initial value</textarea>
+  </div>  
 
-  <label for="description">Description</label>
-  <input type="text">
+  <div class="switch">
+    <input id="dark-mode-on" class="switch__toggle" type="checkbox">
+    <label class="switch__label" for="dark-mode-on">Dark mode</label>
+</div>
+
 </div>
