@@ -2,8 +2,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/thomas-lowry/figma-plugin-ds/dist/figma-plugin-ds.css">
 
 <style>
-  input, textarea {
+  body {
+    padding: 2em;
+  }
+
+  div {
+    margin: 1em;
+  }
+  
+  input {
     display: block
+  }
+
+  [type="radio"] {
+    display: inline;
   }
 </style>
 
@@ -23,12 +35,31 @@
   
   <div class="input">
     <label class="label" for="description">Description</label>
-    <textarea class="textarea" rows="2">Initial value</textarea>
+    <input type="textarea" id="description" value="Lorem ipsum">
   </div>  
 
   <div class="switch">
     <input id="dark-mode-on" class="switch__toggle" type="checkbox">
     <label class="switch__label" for="dark-mode-on">Dark mode</label>
+  </div>
+
+  <div class="radio">
+    <label class="radio__label" for="no-image">No image</label>
+    <input type="radio" id="no-image" class="radio__button" name="variantGroup">
+    
+    <label class="radio__label" for="single">Single image</label>
+    <input type="radio" id="single" class="radio__button" name="variantGroup">
+
+    <label class="radio__label" for="carousel">No image</label>
+    <input type="radio" id="carousel" class="radio__button" name="variantGroup">
+  </div>
+
+  <div class="button">
+    <button class="button button--primary" id="submit-form">Submit</button>
+  </div>
 </div>
 
-</div>
+<!-- JS -->
+<script>
+  document.getElementById("submit-form") = () => {} // look up what this syntax means 
+</script>
