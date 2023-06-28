@@ -61,7 +61,13 @@
 
 <!-- JS -->
 <script>
-  document.getElementById("submit-form") = () => {
-    console.log("Checking if VSCode is watching...")
-  } // look up what this syntax means 
+  document.getElementById("submit-form").onclick = () => { // lambda function, takes in no arguments and runs this function on the given elemenet
+    const username = document.getElementById('username').value;
+    const name = document.getElementById('name').value;
+    const desc = document.getElementById('description').value;
+
+    const darkModeState = document.getElementById('dark-mode-on').checked // returns true or false depending whether or not its been checked
+
+    console.log("Checking if VSCode is watching...");
+  }
 </script>
