@@ -1,5 +1,4 @@
 <!-- CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/thomas-lowry/figma-plugin-ds/dist/figma-plugin-ds.css">
 
 <style>
   body {
@@ -18,6 +17,8 @@
     display: inline;
   }
 </style>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/thomas-lowry/figma-plugin-ds/dist/figma-plugin-ds.css">
 
 <!-- HTML -->
 <h1>Social Media Post Generator</h1>
@@ -66,8 +67,10 @@
     const name = document.getElementById('name').value;
     const desc = document.getElementById('description').value;
 
-    const darkModeState = document.getElementById('dark-mode-on').checked // returns true or false depending whether or not its been checked
+    const darkModeState = document.getElementById('dark-mode-on').checked; // returns true or false depending whether or not its been checked
 
-    console.log("Checking if VSCode is watching...");
+    const imageVariant = document.querySelector('input[name="variantGroup"]:checked').value;
+
+    parent.postMessage({pluginMessage: {name, username, desc, darkModeState, imageVariant}}, '*');
   }
 </script>
