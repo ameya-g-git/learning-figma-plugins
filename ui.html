@@ -18,7 +18,6 @@
   }
 </style>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/thomas-lowry/figma-plugin-ds/dist/figma-plugin-ds.css">
 
 <!-- HTML -->
 <h1>Social Media Post Generator</h1>
@@ -46,13 +45,13 @@
 
   <div class="radio">
     <label class="radio__label" for="no-image">No image</label>
-    <input type="radio" id="no-image" class="radio__button" name="variantGroup">
+    <input type="radio" id="no-image" class="radio__button" name="variantGroup" value="1">
     
     <label class="radio__label" for="single">Single image</label>
-    <input type="radio" id="single" class="radio__button" name="variantGroup">
+    <input type="radio" id="single" class="radio__button" name="variantGroup" value="2">
 
-    <label class="radio__label" for="carousel">No image</label>
-    <input type="radio" id="carousel" class="radio__button" name="variantGroup">
+    <label class="radio__label" for="carousel">Carousel</label>
+    <input type="radio" id="carousel" class="radio__button" name="variantGroup" value="3">
   </div>
 
   <div class="button">
@@ -60,7 +59,7 @@
   </div>
 </div>
 
-<!-- JS -->
+<!-- JS, serves the purpose of communicating form information to the TS file-->
 <script>
   document.getElementById("submit-form").onclick = () => { // lambda function, takes in no arguments and runs this function on the given elemenet
     const username = document.getElementById('username').value;
@@ -70,6 +69,7 @@
     const darkModeState = document.getElementById('dark-mode-on').checked; // returns true or false depending whether or not its been checked
 
     const imageVariant = document.querySelector('input[name="variantGroup"]:checked').value;
+
 
     parent.postMessage({pluginMessage: {name, username, desc, darkModeState, imageVariant}}, '*');
   }

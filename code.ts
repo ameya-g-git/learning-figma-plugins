@@ -2,7 +2,7 @@ figma.showUI(__html__);
 
 figma.ui.resize(500,500);
 
-figma.ui.onmessage = pluginMessage => {
+figma.ui.onmessage = (pluginMessage) => {
 
     const postComponents = figma.root.findOne(node => node.type == "COMPONENT_SET" && node.name == "post") as ComponentSetNode;
 
@@ -17,37 +17,51 @@ figma.ui.onmessage = pluginMessage => {
     const carouselVariant = postComponents.findOne(node => node.type == "COMPONENT_SET" && node.name == "Image=carousel, Dark mode=false") as ComponentNode;
     const carouselDark = postComponents.findOne(node => node.type == "COMPONENT_SET" && node.name == "Image=carousel, Dark mode=true") as ComponentNode;
 
+    let postTemplate; // to save the new component instance in a variable, for later reference + editing the data in the component
+
     if (pluginMessage.darkModeState === true) {
         switch (pluginMessage.imageVariant) {
-            case "1": // default
-                defDark.createInstance();
+            case "1":
+                postTemplate = defDark.createInstance();
                 break;
             case "2": // single
-                singleDark.createInstance();
+                postTemplate = singleDark.createInstance(); 
                 break;
             case "3": // carousel
-                carouselDark.createInstance();
+                postTemplate = carouselDark.createInstance();
                 break;
             default:
+                postTemplate = defDark.createInstance();
                 break;
         }
     }
     else {
         switch (pluginMessage.imageVariant) {
-            case "1": // default
-                defVariant.createInstance();
+            case "1":
+                postTemplate = defVariant.createInstance();
                 break;
             case "2": // single
-                singleVariant.createInstance();
+                postTemplate = singleVariant.createInstance();
                 break;
             case "3": // carousel
-                carouselVariant.createInstance();
+                postTemplate = carouselVariant.createInstance();
                 break;
             default:
+                postTemplate = defVariant.createInstance();
                 break;
         }        
     }
 
+    const tempName = postTemplate.findOne(node => node.type == "TEXT" && node.name == "displayName") as TextNode;
+    const tempUsername = postTemplate.findOne(node => node.type == "TEXT" && node.name == "@username") as TextNode;
+    const tempDesc = postTemplate.findOne(node => node.type == "TEXT" && node.name == "description") as TextNode;
+
+    tempName.characters = pluginMessage.name; // .characters allows us to change the text in the node, the characters 
+    tempUsername.characters = pluginMessage.username;
+    tempDesc.characters = pluginMessage.desc;
+
+ 
+
     figma.closePlugin();
-}
+};
 
